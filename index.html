@@ -263,7 +263,7 @@
 					</el-tabs>
 		    </div>
 				<div id="radarService"  v-loading="loading"></div>
-				<div id="lineChart" style="box-sizing: border-box; padding: 20px 20px 60px 20px;"></div>
+				<div id="lineChart" v-loading="lineloading" style="box-sizing: border-box; padding: 20px 20px 60px 20px;"></div>
 			</div>
 			<!-- 对比链接 -->
 			<div class="linkBox boxStyle" v-if="talentsData">

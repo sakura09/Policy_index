@@ -1,4 +1,4 @@
-const loc_cities = ['杭州市', '宁波市', '温州市', '绍兴市','湖州市','嘉兴市','金华市','衢州市','舟山市','台州市','丽水市']
+const loc_cities = ["杭州市", "宁波市", "温州市", "绍兴市","湖州市","嘉兴市","金华市","衢州市","舟山市","台州市","丽水市"]
 new Vue({
 	el: "#app",
 	data: {
@@ -8,12 +8,13 @@ new Vue({
 		cities:[],
 		activeName:'second',
 		loading:false,
+		lineloading:false,
 		indicator:[],
 		countcitylist:[],
 		radarParams:{
 			province:"浙江省",
+			cityList:'[]',
 			typeList:'',
-			cityList:''
 		},
 		lineParams:{
 			province:"浙江省",
@@ -227,7 +228,7 @@ new Vue({
 				let arr1 = []
 				arr1.push(chartData1['浙江省'])
 				this.randarChart1Init1('浙江省', arr1)
-				this.radarService('浙江省')
+				// this.radarService('浙江省')
 			},
 			error: function (xhr, type, errorThrown) {
 				console.log('请求失败')
@@ -293,11 +294,12 @@ new Vue({
 	},
 	mounted() {
 		this.init()
-		this.lineChart()
+		//TODO
+		this.handleLineChart()
+		this.radarService('浙江省')
 	},
 	methods: {
 		init() {
-
 		},
 		// 政策区域点击
 		areaClick(a) {
@@ -462,7 +464,9 @@ new Vue({
 						province: JSON.stringify(this.selectArea),
 						"政策类型": JSON.stringify(this.selectCategory),
 						"服务类型": JSON.stringify(arr5),
-						pageNum: JSON.stringify([val])
+						pageNum: JSON.stringify([val]),
+						cityList:JSON.stringify(this.countcitylist)
+						
 					},
 					xhrFields: {
 						withCredentials: true
@@ -497,7 +501,8 @@ new Vue({
 					province: JSON.stringify(this.selectArea),
 					"政策类型": JSON.stringify(this.selectCategory),
 					"服务类型": JSON.stringify(arr5),
-					pageNum: JSON.stringify(this.pageNum)
+					pageNum: JSON.stringify(this.pageNum),
+					cityList:JSON.stringify(this.countcitylist)
 				},
 				xhrFields: {
 					withCredentials: true
@@ -534,7 +539,8 @@ new Vue({
 					province: JSON.stringify(this.selectArea),
 					"政策类型": JSON.stringify(this.selectCategory),
 					"服务类型": JSON.stringify(arr5),
-					pageNum: JSON.stringify(this.pageNum)
+					pageNum: JSON.stringify(this.pageNum),
+					cityList:JSON.stringify(this.countcitylist)
 				},
 				xhrFields: {
 					withCredentials: true
@@ -628,7 +634,7 @@ new Vue({
 		},
 		//人才政策数量雷达图
 		randarChart1Init1(title, data) {
-			console.log('radar',data)
+
 			let chart1 = echarts.init(document.getElementById("randarChart2"))
 			let option = {
 				legend: {
@@ -641,7 +647,7 @@ new Vue({
 					left: "center"
 				},
 				tooltip: {
-					confine: true
+					confine: true,
 				},
 				radar: {
 					// shape: 'circle',
@@ -675,6 +681,33 @@ new Vue({
 			if (typeof indicator == 'undefined' || indicator.length == 0 ){
 				indicator = [{}]
 			}
+			let radartitle = ''
+			//title 
+			if (this.countcitylist.length>1)
+			{
+				radartitle = this.radarParams.province+this.countcitylist[0]+this.countcitylist[1]+'政策对比' 
+			}
+			else if (this.countcitylist.length == 1){
+				radartitle = this.radarParams.province+this.countcitylist[0]+'政策对比'
+			}
+			else{
+				radartitle = this.radarParams.province+'政策对比'
+			}
+			// units
+			let units = ''
+			if (this.activeName == 'first'){
+				units = '分数'
+			}
+			else if (this.activeName == 'third'){
+				units = '个数'
+			}
+			else{
+				units = '万元'
+			}
+			let labels = []
+			for(let i = 0;i<indicator.length;i++){
+				labels.push(indicator[i].name)
+			}
 			let chart1 = echarts.init(document.getElementById("radarService"))
 			let option = {
 				legend: {
@@ -682,12 +715,19 @@ new Vue({
 					bottom: "10%"
 				},
 				title: {
-					text: title ? title + "服务政策" : "服务政策",
+					text: radartitle,
 					top: 20,
 					left: "center"
 				},
 				tooltip: {
-					confine: true
+					confine: true,
+					formatter: function(params) {
+						var results = params.name+'<br>';
+						for (var i = 0; i < labels.length; i++) {
+							results += labels[i] + '：' + params.value[i] + units+'<br>';
+						}
+						return results;
+					}
 				},
 				radar: {
 					shape: 'circle',
@@ -720,10 +760,21 @@ new Vue({
 		},
 		lineChart(data1=[],data2=[],xdata=[],title='',name=[]){
 			let chart1 = echarts.init(document.getElementById("lineChart"))
+			let linetitle = ''
+			if (this.countcitylist.length>1)
+			{
+				linetitle = this.lineParams.province+this.countcitylist[0]+this.countcitylist[1]+title+'对比' 
+			}
+			else if (this.countcitylist.length == 1){
+				linetitle = this.lineParams.province+this.countcitylist[0]+title
+			}
+			else{
+				linetitle = this.lineParams.province+title
+			}
 			let option = {
 				backgroundColor: '#fff',
 				title: {
-					text: title,
+					text: linetitle,
 					textStyle: {
 						fontWeight: 'bold',
 						fontSize: 18,
@@ -740,25 +791,22 @@ new Vue({
 					}
 				},
 				legend: {
-					icon: 'rect',
-					itemWidth: 14,
-					itemHeight: 5,
-					itemGap: 13,
-					data: ['移动'],
-					right: '4%',
+					bottom: '0',
+					data: name,
 					textStyle: {
 						fontSize: 12,
-						color: '#F1F1F3'
+						color: '#666'
 					}
 				},
 				grid: {
 					left: '3%',
-					right: '4%',
-					bottom: '3%',
+					right: '8%',
+					bottom: '5%',
 					containLabel: true
 				},
 				xAxis: [{
 					type: 'category',
+					name:'万元',
 					boundaryGap: false,
 					axisLine: {
 						lineStyle: {
@@ -769,6 +817,7 @@ new Vue({
 				}],
 				yAxis: [{
 					type: 'value',
+					name:"个数",
 					axisTick: {
 						show: false
 					},
@@ -861,10 +910,11 @@ new Vue({
 			}
 			chart1.setOption(option)
 		},
-		handleLineChart(type='',city=""){
+		handleLineChart(type='生活补贴',city=""){
 			this.lineParams.type = type
 			//this.lineParams.cityList = '["'+city+'"]'
 			this.lineParams.cityList = JSON.stringify(this.countcitylist)
+			this.lineloading = true
 			$.ajax({
 				type: 'GET',
 				data: this.lineParams,
@@ -883,7 +933,7 @@ new Vue({
 					else{
 						this.lineChart(data.b1,data.b2,data.a,type,this.countcitylist)
 					}
-					
+					this.lineloading = false
 				}
 			})
 		},
@@ -918,7 +968,7 @@ new Vue({
 				xhrFields: {
 					withCredentials: true
 				},
-				url: 'http://210.14.118.96/'+url,
+				url: 'http://210.14.118.96'+url,
 				crossDomain: true,
 				async: true,
 				dataType: 'json',
@@ -996,7 +1046,8 @@ new Vue({
 						province: JSON.stringify(this.selectArea),
 						"政策类型": JSON.stringify(this.selectCategory),
 						"服务类型": JSON.stringify(arr5),
-						pageNum: JSON.stringify([1])
+						pageNum: JSON.stringify([1]),
+						cityList:JSON.stringify(this.countcitylist)
 					},
 					xhrFields: {
 						withCredentials: true
@@ -1057,7 +1108,8 @@ new Vue({
 								province: JSON.stringify(this.selectArea),
 								"政策类型": JSON.stringify(this.selectCategory),
 								"服务类型": JSON.stringify(arr5),
-								pageNum: JSON.stringify([1, 1])
+								pageNum: JSON.stringify([1, 1]),
+								cityList:JSON.stringify(this.countcitylist)
 							},
 							xhrFields: {
 								withCredentials: true
