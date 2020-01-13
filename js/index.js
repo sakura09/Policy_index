@@ -585,23 +585,24 @@ new Vue({
 					formatter: (params) => {
 						return `
 							${params.name} <br >
-							国家级奖项获奖人才: ${params.value[0]} <br >
-							<p style="padding-left: 10px;">国家最高科学技术奖: ${params.data['国家最高科学技术奖'] || 0}</p>
-							<p style="padding-left: 10px;">国家自然科学奖: ${params.data['国家自然科学奖'] || 0}</p>
-							<p style="padding-left: 10px;">国家科学技术进步奖: ${params.data['国家科学技术进步奖'] || 0}</p>
-							<p style="padding-left: 10px;">国家技术发明奖: ${params.data['国家技术发明奖'] || 0}</p>
+							国家级奖项获奖人才: ${params.value[0]} 人<br >
+							<p style="padding-left: 10px;">国家最高科学技术奖: ${params.data['国家最高科学技术奖'] || 0}人</p>
+							<p style="padding-left: 10px;">国家自然科学奖: ${params.data['国家自然科学奖'] || 0}人</p>
+							<p style="padding-left: 10px;">国家科学技术进步奖: ${params.data['国家科学技术进步奖'] || 0}人</p>
+							<p style="padding-left: 10px;">国家技术发明奖: ${params.data['国家技术发明奖'] || 0}人</p>
 							
-							国家人才计划: ${params.value[1]} <br >
-							<p style="padding-left: 10px;">两院院士: ${params.data['两院院士'] || 0}</p>
-							<p style="padding-left: 10px;">长江学者: ${params.data['长江学者'] || 0}</p>
-							<p style="padding-left: 10px;">千人计划: ${params.data['千人计划'] || 0}</p>
-							<p style="padding-left: 10px;">万人计划: ${params.data['万人计划'] || 0}</p>
-							青年人才: ${params.value[2]} <br >
-							<p style="padding-left: 10px;">杰出青年科学基金: ${params.data['杰出青年科学基金'] || 0}</p>
-							<p style="padding-left: 10px;">优秀青年科学基金: ${params.data['优秀青年科学基金'] || 0}</p>
-							<p style="padding-left: 10px;">中国青年女科学家: ${params.data['中国青年女科学家'] || 0}</p>
-							科技人才总数: ${params.value[3]} <br >
-							科技贡献: ${params.value[4]} <br >
+							国家人才计划: ${params.value[1]} 人<br >
+							<p style="padding-left: 10px;">两院院士: ${params.data['两院院士'] || 0}人</p>
+							<p style="padding-left: 10px;">长江学者: ${params.data['长江学者'] || 0}人</p>
+							<p style="padding-left: 10px;">千人计划: ${params.data['千人计划'] || 0}人</p>
+							<p style="padding-left: 10px;">万人计划: ${params.data['万人计划'] || 0}人</p>
+							青年人才: ${params.value[2]} 人<br >
+							<p style="padding-left: 10px;">杰出青年科学基金: ${params.data['杰出青年科学基金'] || 0}人</p>
+							<p style="padding-left: 10px;">优秀青年科学基金: ${params.data['优秀青年科学基金'] || 0}人</p>
+							<p style="padding-left: 10px;">中国青年科技奖: ${params.data['中国青年科技奖'] || 0}人</p>
+							<p style="padding-left: 10px;">中国青年女科学家: ${params.data['中国青年女科学家'] || 0}人</p>
+							科技人才总数: ${params.value[3]} 万人<br >
+							科技贡献: ${params.value[4]} 分<br >
 						`
 					},
 				},
