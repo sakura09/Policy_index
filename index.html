@@ -20,309 +20,291 @@
 	</head>
 	<body>
 		
-	<div id="app" style="width: 100%;margin: 0 auto;">
-		<div id="root" style="width:100%;">
-			<!--头部-->
-			<div class="Img">
-				<img src="./img/logo.jpg" />
-				<span style="font-size: 46px;color: #e8e8e8;opacity: .2;margin-left: 20px"> / </span>
-				<span style="font-size: 38px;color: #fff;margin-left: 20px;letter-spacing: 2px;font-family: hanyi;">
-					人才政策服务平台 </span>
+		<div id="app" style="width: 100%;margin: 0 auto;">
+			<div id="root" style="width:100%;">
+			    <!--头部-->
+			    <div class="Img">
+			        <img src="./img/logo.jpg" />
+			        <span style="font-size: 46px;color: #e8e8e8;opacity: .2;margin-left: 20px"> / </span>
+			        <span style="font-size: 38px;color: #fff;margin-left: 20px;letter-spacing: 2px;font-family: hanyi;">
+			            人才政策服务平台 </span>
+			    </div>
 			</div>
-		</div>
 			<div class="content">
-			<div class="top boxStyle">
-				<div class="topLeft">
-					<div></div>
-				</div>
-				<div class="topRight">
-					<div style="border-color: #ffd966; color: #bf9000;">
-						<p>政策文件数<br>19336</p>
+				<div class="top boxStyle">
+					<div class="topLeft">
+						<div></div>
 					</div>
-					<div style="border-color: #f4b183; color: #c55a11;">
-						<p>省覆盖数<br>4</p>
-					</div>
-					<div style="border-color: #a9d183; color: #548235;">
-						<p>覆盖城市数<br>11</p>
-					</div>
-					<div style="border-color: #9dc3e6; color: #2f5597;">
-						<p>国家级政策数<br>2958</p>
-					</div>
-					<div style="border-color: #8faadc; color: #5775aa;">
-						<p>省级政策数<br>16090</p>
-					</div>
-					<div style="border-color: #8497b0; color: #333f50;">
-						<p>市级政策数<br>288</p>
-					</div>
-				</div>
-			</div>
-			<!-- 政策区域 -->
-			<div class="boxStyle" style="min-height:50px;">
-				<div class="title">政策区域</div>
-				<div class="areaContentBox">
-					<div v-for="(item,key) in areaData" :key="item+key" class="areaContent iconBox">
-						<i @click="areaClick" :class="{icon: selectArea.indexOf(key) != -1}"></i>
-						<span>{{key}}</span>
-					</div>
-				</div>
-				<div class="city-checkbox" style="margin: 20px 0;">
-						<el-checkbox-group v-model="checkedCities" @change="handleCheckedCitiesChange" :min="0"
-						:max="2">
-							<el-checkbox v-for="city in cities" :label="city" :key="city">{{city}}</el-checkbox>
-						</el-checkbox-group>
-					</div>
-				
-			</div>
-			<!-- 政策类别 -->
-			<div class="category boxStyle">
-				<div class="title">政策类别</div>
-				<div class="areaContentBox">
-					<div v-for="(item) in categoryData" :key="item" class="areaContent iconBox">
-						<i @click="categoryClick"></i>
-						<span>{{item}}</span>
-					</div>
-				</div>
-			</div>
-			<!-- 服务类型 -->
-			<div class="type boxStyle">
-				<div class="title">服务类型</div>
-				<div class="typeContentBox">
-					<div v-for="(item,key) in typeData" :key="item + key">
-						<div class="typeLeft iconBox">
-							<i class="" @click="typeTitleClick"></i>
-							<span>{{key}}:</span>
+					<div class="topRight">
+						<div style="border-color: #ffd966; color: #bf9000;">
+							<p>政策文件数<br>19336</p>
 						</div>
-						<div class="typeRight">
-							<div class="iconBox" v-for="(itemSon,keySon) in item" :key="itemSon + keySon">
-								<i class="" @click="typeContentClick" style="cursor: pointer;"></i>
-								<span>{{itemSon}}</span>
+						<div style="border-color: #f4b183; color: #c55a11;">
+							<p>省覆盖数<br>4</p>
+						</div>
+						<div style="border-color: #a9d183; color: #548235;">
+							<p>覆盖城市数<br>11</p>
+						</div>
+						<div style="border-color: #9dc3e6; color: #2f5597;">
+							<p>国家级政策数<br>2958</p>
+						</div>
+						<div style="border-color: #8faadc; color: #5775aa;">
+							<p>省级政策数<br>16090</p>
+						</div>
+						<div style="border-color: #8497b0; color: #333f50;">
+							<p>市级政策数<br>288</p>
+						</div>
+					</div>
+				</div>
+				<!-- 政策区域 -->
+				<div class="area boxStyle">
+					<div class="title">政策区域</div>
+					<div class="areaContentBox">
+						<div v-for="(item,key) in areaData" :key="item+key" class="areaContent iconBox">
+							<i @click="areaClick" :class="{icon: selectArea.indexOf(key) != -1}"></i>
+							<span>{{key}}</span>
+						</div>
+					</div>
+				</div>
+				<!-- 政策类别 -->
+				<div class="category boxStyle">
+					<div class="title">政策类别</div>
+					<div class="areaContentBox">
+						<div v-for="(item) in categoryData" :key="item" class="areaContent iconBox">
+							<i @click="categoryClick"></i>
+							<span>{{item}}</span>
+						</div>
+					</div>
+				</div>
+				<!-- 服务类型 -->
+				<div class="type boxStyle">
+					<div class="title">服务类型</div>
+					<div class="typeContentBox">
+						<div v-for="(item,key) in typeData" :key="item + key">
+							<div class="typeLeft iconBox">
+								<i class="" @click="typeTitleClick"></i>
+								<span>{{key}}:</span>
+							</div>
+							<div class="typeRight">
+								<div class="iconBox" v-for="(itemSon,keySon) in item" :key="itemSon + keySon">
+									<i class="" @click="typeContentClick" style="cursor: pointer;"></i>
+									<span>{{itemSon}}</span>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div style="color: #ccc;">
-						<div class="typeLeft iconBox" style="cursor: no-drop;">
-							<i class=""></i>
-							<span>其他类:</span>
-						</div>
-						<div class="typeRight">
-							<div class="iconBox" style="cursor: no-drop;" v-for="(itemSon,keySon) in typeData1" :key="itemSon + keySon">
+						<div style="color: #ccc;">
+							<div class="typeLeft iconBox" style="cursor: no-drop;">
 								<i class=""></i>
-								<span>{{itemSon}}</span>
+								<span>其他类:</span>
+							</div>
+							<div class="typeRight">
+								<div class="iconBox" style="cursor: no-drop;" v-for="(itemSon,keySon) in typeData1" :key="itemSon + keySon">
+									<i class=""></i>
+									<span>{{itemSon}}</span>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<!-- 开始对比 -->
-			<div class="contrast boxStyle">
-				<div class="selectArea">
-					<p>当前选中的区域:</p>
-					<span v-for="(item,key) in selectArea">{{item}} <i @click="delectArea">x</i></span>
-				</div>
-				<div class="button" @click="clickButton">查询</div>
-				<p>温馨提示：最多选择两个地区对比</p>
-			</div>
-			<!-- 全部政策 -->
-			<div class="allPolicy boxStyle" v-if="isShowAllPolicy">
-				<div class="titles">全部政策</div>
-				<div class="tableBox">
-					<template>
-						<el-table
-						  :data="tableData"
-						  style="width: 100%"
-						  show-overflow-tooltip="true">
-						  <el-table-column
-							prop="政策标题"
-							label="政策标题"
-							width="200"
-							show-overflow-tooltip>
-						  </el-table-column>
-						  <el-table-column
-							prop="人才待遇"
-							label="人才待遇"
-							width="220"
-							show-overflow-tooltip>
-						  </el-table-column>
-						  <el-table-column
-							prop="待遇类型"
-							label="待遇类型"
-							width="150"
-							show-overflow-tooltip>
-						  </el-table-column>
-						  <el-table-column
-							prop="适用区域"
-							label="适用区域"
-							width="150"
-							show-overflow-tooltip>
-						  </el-table-column>
-						  <el-table-column
-							prop="政策条款及服务内容"
-							label="政策条款及服务内容"
-							show-overflow-tooltip>
-						  </el-table-column>
-						  <el-table-column
-							label="操作"
-							width="70">
-							<template slot-scope="scope">
-								<el-button
-								  @click.native.prevent="deleteRow(scope.$index, tableData)"
-								  type="text"
-								  size="small">
-								  详情
-								</el-button>
-							  </template>
-						  </el-table-column>
-						</el-table>
-					  </template>
-				</div>
-				<!-- 分页 -->
-				<div class="pageination">
-					<el-pagination
-					  @current-change="handleCurrentChange"
-					  :current-page.sync="currentPage1"
-					  :page-size="10"
-					  layout="total, prev, pager, next"
-					  :total="total1">
-					</el-pagination>
-				</div>
-			</div>
-			<!-- 对比 -->
-			<div class="contrastContent boxStyle" v-if="!isShowAllPolicy">
-				<div class="title2">
-					<span class="span1">您当前选择对比区域</span>
-					<span class="span2">{{selectArea[0]}}</span>
-					<span>{{selectArea[1]}}</span>
-				</div>
-				<div class="contrastTable">
-					<div class="title3">
-						<span></span>
-						<span>人才待遇</span>
-						<span>人才待遇</span>
+				<!-- 开始对比 -->
+				<div class="contrast boxStyle">
+					<div class="selectArea">
+						<p>当前选中的区域:</p>
+						<span v-for="(item,key) in selectArea">{{item}} <i @click="delectArea">x</i></span>
 					</div>
-					<div class="content3" v-if="content3Data">
-						<div style="display: flex; align-items: center;">
-							<p>政策服务及类型</p>
-						</div>
-						<div>
-							<p v-for="item in content3Data.treat1" class="shengluohao">
-								<el-popover
-									placement="top-start"
-									:title="item['政策标题']"
-									width="200"
-									trigger="hover"
-									:content="item['政策条款及服务内容']">
-									<el-button slot="reference" style="color: #000; "><span @click="getUrl(item.url)">{{item['人才待遇1']}} <span>({{item['待遇类型']}})</span> </span></el-button>
-								  </el-popover>
-							</p>
-							<div class="pageination absolute">
-								<el-pagination
-								  @current-change="handleCurrentChange1"
-								  :current-page.sync="currentPage2"
-								  :page-size="10"
-								  layout="total, prev, pager, next"
-								  :total="total2">
-								</el-pagination>
-							</div>
-						</div>
-						
-						<div class="content3Div">
-							<p v-for="item in content3Data.treatList2" class="shengluohao tootip">
-								<el-popover
-								class="shengluohao"
-									placement="top-start"
-									:title="item['政策标题']"
-									width="200"
-									trigger="hover"
-									:content="item['政策条款及服务内容']">
-									<el-button slot="reference" style="color: #000; "><span @click="getUrl(item.url)">{{item['人才待遇']}}<span>({{item['待遇类型']}})</span></span></el-button>
-								  </el-popover>
-							</p>
-							<div class="pageination absolute">
-								<el-pagination
-								  @current-change="handleCurrentChange2"
-								  :current-page.sync="currentPage3"
-								  :page-size="10"
-								  layout="total, prev, pager, next"
-								  :total="total3">
-								</el-pagination>
-							</div>
-						</div>
+					<div class="button" @click="clickButton">查询</div>
+					<p>温馨提示：最多选择两个地区对比</p>
+				</div>
+				<!-- 全部政策 -->
+				<div class="allPolicy boxStyle" v-if="isShowAllPolicy">
+					<div class="titles">全部政策</div>
+					<div class="tableBox">
+						<template>
+						    <el-table
+						      :data="tableData"
+						      style="width: 100%"
+							  show-overflow-tooltip="true">
+						      <el-table-column
+						        prop="政策标题"
+						        label="政策标题"
+						        width="200"
+								show-overflow-tooltip>
+						      </el-table-column>
+						      <el-table-column
+						        prop="人才待遇"
+						        label="人才待遇"
+						        width="220"
+								show-overflow-tooltip>
+						      </el-table-column>
+						      <el-table-column
+						        prop="待遇类型"
+						        label="待遇类型"
+								width="150"
+								show-overflow-tooltip>
+						      </el-table-column>
+							  <el-table-column
+							    prop="适用区域"
+							    label="适用区域"
+								width="150"
+								show-overflow-tooltip>
+							  </el-table-column>
+							  <el-table-column
+							    prop="政策条款及服务内容"
+							    label="政策条款及服务内容"
+								show-overflow-tooltip>
+							  </el-table-column>
+							  <el-table-column
+							    label="操作"
+								width="70">
+								<template slot-scope="scope">
+									<el-button
+									  @click.native.prevent="deleteRow(scope.$index, tableData)"
+									  type="text"
+									  size="small">
+									  详情
+									</el-button>
+								  </template>
+							  </el-table-column>
+						    </el-table>
+						  </template>
+					</div>
+					<!-- 分页 -->
+					<div class="pageination">
+						<el-pagination
+						  @current-change="handleCurrentChange"
+						  :current-page.sync="currentPage1"
+						  :page-size="10"
+						  layout="total, prev, pager, next"
+						  :total="total1">
+						</el-pagination>
 					</div>
 				</div>
-			</div>
-			<div class="contrastContent2 boxStyle">
-				<div id="randarChart1"></div>
-				<div id="randarChart2"></div>
-			</div>
-			<div class="contrastContent2 boxStyle" style="position: relative;">
-			<div style="position: absolute;left: 220px;top:461px;height: 50px;">
-					<el-tabs v-model="activeName" @tab-click="handleClick">
-						<el-tab-pane label="得分" name="first"></el-tab-pane>
-						<el-tab-pane label="力度" name="second"></el-tab-pane>
-						<el-tab-pane label="数量" name="third"></el-tab-pane>
-					</el-tabs>
-		    </div>
-				<div id="radarService"  v-loading="loading"></div>
-				<div id="lineChart" v-loading="lineloading" style="box-sizing: border-box; padding: 20px 20px 60px 20px;"></div>
-			</div>
-			<!-- 对比链接 -->
-			<div class="linkBox boxStyle" v-if="talentsData">
-				<div class="title">人才引进计划</div>
-				<div class="linkTop">
-					<div class="iconBox" v-for="(itemSon,keySon) in talentsData" :key="itemSon + keySon">
-						<i class="" @click="selectLink"></i>
-						<span>{{keySon}}</span>
+				<!-- 对比 -->
+				<div class="contrastContent boxStyle" v-if="!isShowAllPolicy">
+					<div class="title2">
+						<span class="span1">您当前选择对比区域</span>
+						<span class="span2">{{selectArea[0]}}</span>
+						<span>{{selectArea[1]}}</span>
 					</div>
-				</div>
-				<div style="overflow: hidden;"><div class="button" style="float: right;" @click="clickButton1">查询</div></div>
-				<div class="linkBottom">
-					<div class="linkContent" v-if="isShowLinkContent">
-						<p v-for="(itemSon,keySon) in talentsData" :key="itemSon + keySon">
-							{{keySon}}: <a :href="itemSon.href">{{itemSon.href}}</a>
-						</p></p>
-					</div>
-					<div class="linkContent1" v-if="!isShowLinkContent">
-						<div class="linkTableTitle">
+					<div class="contrastTable">
+						<div class="title3">
 							<span></span>
-							<span :class="{length1: selectTalent.length == 1}">{{selectTalent[0]}}</span>
-							<span :class="{length1: selectTalent.length == 1}">{{selectTalent[1]}}</span>
+							<span>人才待遇</span>
+							<span>人才待遇</span>
 						</div>
-						<div class="linkTableContent">
-							<div class="linkTableContentBox1">
-								<span style="font-weight: bold;">设定标准</span>
-								<span :class="{length1: selectTalent.length == 1}">
-									<div style="width: 100%;" v-if="talentsData[selectTalent[0]]">
-										<p v-for='item in talentsData[selectTalent[0]]["标准"]' class="hovers">
-											{{item}}
-										</p>
-									</div>
-								</span>
-								<span v-if="selectTalent.length == 2">
-									<div style="width: 100%;" v-if="talentsData[selectTalent[1]]">
-										<p v-for='item in  talentsData[selectTalent[1]]["标准"]'>{{item}}</p>
-									</div>
-								</span>
+						<div class="content3" v-if="content3Data">
+							<div style="display: flex; align-items: center;">
+								<p>政策服务及类型</p>
 							</div>
-							<div class="linkTableContentBox2">
-								<span style="font-weight: bold;">奖励力度</span>
-								<span :class="{length1: selectTalent.length == 1}">
-									<div style="width: 100%;" v-if="talentsData[selectTalent[0]]">
-										<p v-for='item in talentsData[selectTalent[0]]["奖励力度"]'>{{item}}</p>
-									</div>
-								</span>
-								<span v-if="selectTalent.length == 2">
-									<div style="width: 100%;" v-if="talentsData[selectTalent[1]]">
-										<p v-for='item in talentsData[selectTalent[1]]["奖励力度"]'>{{item}}</p>
-									</div>
-								</span>
+							<div>
+								<p v-for="item in content3Data.treat1" class="shengluohao">
+									<el-popover
+									    placement="top"
+									    :title="item['政策标题']"
+									    width="200"
+									    trigger="hover"
+									    :content="item['政策条款及服务内容']">
+									    <el-button slot="reference" style="color: #000; "><span @click="getUrl(item.url)">{{item['人才待遇1']}} <span>({{item['待遇类型']}})</span> </span></el-button>
+									  </el-popover>
+								</p>
+								<div class="pageination absolute">
+									<el-pagination
+									  @current-change="handleCurrentChange1"
+									  :current-page.sync="currentPage2"
+									  :page-size="10"
+									  layout="total, prev, pager, next"
+									  :total="total2">
+									</el-pagination>
+								</div>
+							</div>
+							
+							<div class="content3Div">
+								<p v-for="item in content3Data.treatList2" class="shengluohao tootip">
+									<el-popover
+									class="shengluohao"
+									    placement="top-start"
+									    :title="item['政策标题']"
+									    width="200"
+									    trigger="hover"
+									    :content="item['政策条款及服务内容']">
+									    <el-button slot="reference" style="color: #000; "><span @click="getUrl(item.url)">{{item['人才待遇']}}<span>({{item['待遇类型']}})</span></span></el-button>
+									  </el-popover>
+								</p>
+								<div class="pageination absolute">
+									<el-pagination
+									  @current-change="handleCurrentChange2"
+									  :current-page.sync="currentPage3"
+									  :page-size="10"
+									  layout="total, prev, pager, next"
+									  :total="total3">
+									</el-pagination>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+				<div class="contrastContent2 boxStyle">
+					<div id="randarChart1"></div>
+					<div id="randarChart2"></div>
+				</div>
+				<!-- 对比链接 -->
+				<div class="linkBox boxStyle" v-if="talentsData">
+					<div class="title">人才引进计划</div>
+					<div class="linkTop">
+						<div class="iconBox" v-for="(itemSon,keySon) in talentsData" :key="itemSon + keySon">
+							<i class="" @click="selectLink"></i>
+							<span>{{keySon}}</span>
+						</div>
+					</div>
+					<div style="overflow: hidden;"><div class="button" style="float: right;" @click="clickButton1">查询</div></div>
+					<div class="linkBottom">
+						<div class="linkContent" v-if="isShowLinkContent">
+							<p v-for="(itemSon,keySon) in talentsData" :key="itemSon + keySon">
+								{{keySon}}: <a :href="itemSon.href">{{itemSon.href}}</a>
+							</p></p>
+						</div>
+						<div class="linkContent1" v-if="!isShowLinkContent">
+							<div class="linkTableTitle">
+								<span></span>
+								<span :class="{length1: selectTalent.length == 1}">{{selectTalent[0]}}</span>
+								<span :class="{length1: selectTalent.length == 1}">{{selectTalent[1]}}</span>
+							</div>
+							<div class="linkTableContent">
+								<div class="linkTableContentBox1">
+									<span style="font-weight: bold;">设定标准</span>
+									<span :class="{length1: selectTalent.length == 1}">
+										<div style="width: 100%;" v-if="talentsData[selectTalent[0]]">
+											<p v-for='item in talentsData[selectTalent[0]]["标准"]' class="hovers">
+												{{item}}
+											</p>
+										</div>
+									</span>
+									<span v-if="selectTalent.length == 2">
+										<div style="width: 100%;" v-if="talentsData[selectTalent[1]]">
+											<p v-for='item in  talentsData[selectTalent[1]]["标准"]'>{{item}}</p>
+										</div>
+									</span>
+								</div>
+								<div class="linkTableContentBox2">
+									<span style="font-weight: bold;">奖励力度</span>
+									<span :class="{length1: selectTalent.length == 1}">
+										<div style="width: 100%;" v-if="talentsData[selectTalent[0]]">
+											<p v-for='item in talentsData[selectTalent[0]]["奖励力度"]'>{{item}}</p>
+										</div>
+									</span>
+									<span v-if="selectTalent.length == 2">
+										<div style="width: 100%;" v-if="talentsData[selectTalent[1]]">
+											<p v-for='item in talentsData[selectTalent[1]]["奖励力度"]'>{{item}}</p>
+										</div>
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="br"></div>
 			</div>
-			<div class="br"></div>
 		</div>
-	</div>
 		<script src="./js/index.js"></script>
 	</body>
 	
