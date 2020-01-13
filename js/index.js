@@ -677,7 +677,7 @@ new Vue({
 			chart1.setOption(option)
 		},
 		//服务类型雷达
-		radarService(title, data,indicator){
+		radarService(title, data,indicator,scaleData){
 			if (typeof indicator == 'undefined' || indicator.length == 0 ){
 				indicator = [{}]
 			}
@@ -723,8 +723,9 @@ new Vue({
 					confine: true,
 					formatter: function(params) {
 						var results = params.name+'<br>';
+						let values=scaleData.find((p)=>{ return p.name == params.name})
 						for (var i = 0; i < labels.length; i++) {
-							results += labels[i] + '：' + params.value[i] + units+'<br>';
+							results += labels[i] + '：' + values.value[i] + units+'<br>';
 						}
 						return results;
 					}
@@ -941,6 +942,7 @@ new Vue({
 			let indicator = []
 			let radarData = []
 			let seriesData = []
+			let showData =[]
 			//created indicator
 			// for(let i = 0;i<this.radarList.length;i++){
 			// 	indicator.push({name:this.radarList[i]})
@@ -977,21 +979,30 @@ new Vue({
 					radarData = data.dataList
 					let values1 = []
 					let values2 = []
+					let scale1 = []
+					let scale2 = []
 					for(let i=0;i<radarData.length;i++){
 						indicator.push({name:radarData[i].name,max:radarData[i].max})
 						values1.push(radarData[i].value1)
+						scale1.push(radarData[i].scale1)
 						if(typeof radarData[i].value2 != 'undefined'){
 							values2.push(radarData[i].value2)
 						}
+						if(typeof radarData[i].scale2 != 'undefined'){
+							scale2.push(radarData[i].scale2)
+						}
 					}
 					seriesData.push({value:values1,name:this.countcitylist[0]})
+					showData.push({value:scale1,name:this.countcitylist[0]})
 					if (this.countcitylist.length > 1){
 						seriesData.push({value:values2,name:this.countcitylist[1]})
+						showData.push({value:scale2,name:this.countcitylist[1]})
 					}
 					this.indicator = indicator
 					console.log('indicator',indicator)
 					console.log('seris',seriesData)
-					this.radarService('',seriesData,indicator)
+					console.log('scale',showData)
+					this.radarService('',showData,indicator,seriesData)
 					this.loading = false
 				}
 			});
@@ -999,7 +1010,7 @@ new Vue({
 		handleCheckedCitiesChange(value) {
 			this.countcitylist = value
 			this.radarParams.cityList = JSON.stringify(value)
-			this.handleRadarService()
+			//this.handleRadarService()
 		},
 		handleClick(tab) {
 			this.handleRadarService()
