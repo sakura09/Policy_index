@@ -193,7 +193,7 @@ new Vue({
 			xhrFields: {
 				withCredentials: true
 			},
-			url: 'http://210.14.118.96/api/v1/data/policy/d20e17c02875eddb28c0eee366c91231',
+			url: '/api/policy/getAllPolicy',
 			crossDomain: true,
 			async: true,
 			dataType: 'json',
@@ -248,7 +248,7 @@ new Vue({
 					xhrFields: {
 						withCredentials: true
 					},
-					url: 'http://210.14.118.96/api/v1/data/policy/d20e17c02875eddb28c0eee366c91231',
+					url: '/api/policy/getAllPolicy',
 					crossDomain: true,
 					async: true,
 					dataType: 'json',
@@ -427,7 +427,7 @@ new Vue({
 		//全部政策分页
 		handleCurrentChange(val) {
 			if (this.selectArea.length == 0) {
-				let url = 'http://210.14.118.96/api/v1/data/policy/d20e17c02875eddb28c0eee366c91231'
+				let url = 'http://10.1.1.6/api/policy/getAllPolicy'
 				$.ajax({
 					type: 'GET',
 					data: {
@@ -457,7 +457,7 @@ new Vue({
 				func(this.typeSelectData1, arr5)
 				func(this.typeSelectData2, arr5)
 				func(this.typeSelectData3, arr5)
-				let url = "http://210.14.118.96/api/v1/data/policy/ac8d658f03e7c1108198cae4b43b930a?token=01311272-ae3c-4b64-b615-42cb850b9385"
+				let url = "/api/policy/contrastPolicy?token=01311272-ae3c-4b64-b615-42cb850b9385"
 				$.ajax({
 					type: 'GET',
 					data: {
@@ -494,7 +494,7 @@ new Vue({
 			func(this.typeSelectData1, arr5)
 			func(this.typeSelectData2, arr5)
 			func(this.typeSelectData3, arr5)
-			let url = "http://210.14.118.96/api/v1/data/policy/ac8d658f03e7c1108198cae4b43b930a?token=01311272-ae3c-4b64-b615-42cb850b9385"
+			let url = "/api/policy/contrastPolicy?token=01311272-ae3c-4b64-b615-42cb850b9385"
 			$.ajax({
 				type: 'GET',
 				data: {
@@ -532,7 +532,7 @@ new Vue({
 			func(this.typeSelectData1, arr5)
 			func(this.typeSelectData2, arr5)
 			func(this.typeSelectData3, arr5)
-			let url = "http://210.14.118.96/api/v1/data/policy/ac8d658f03e7c1108198cae4b43b930a?token=01311272-ae3c-4b64-b615-42cb850b9385"
+			let url = "/api/policy/contrastPolicy?token=01311272-ae3c-4b64-b615-42cb850b9385"
 			$.ajax({
 				type: 'GET',
 				data: {
@@ -923,7 +923,7 @@ new Vue({
 				xhrFields: {
 					withCredentials: true
 				},
-				url: 'http://210.14.118.96/api/v1/data/policy/ccbe6d168c169805efac93a6a0d0ef2c',
+				url: '/api/policy/zet_city',
 				crossDomain: true,
 				async: true,
 				dataType: 'json',
@@ -955,15 +955,15 @@ new Vue({
 			// TODO created series series[0].data = [{ name;"",value:[]}]
 			this.radarParams.typeList =JSON.stringify(this.radarList)
 			this.loading = true
-			let url = '/api/v1/data/policy/fd768b07bcbc10bba820bd49f50a5390'
+			let url = '/api/policy/radar3_city'
 			if (this.activeName == 'first'){
-				url = '/api/v1/data/policy/8d9f3c227257e3747e81d3b7432d37ef'
+				url = '/api/policy/radar2_city'
 			}
 			else if (this.activeName == 'third'){
-				url = '/api/v1/data/policy/862a2d10861c02411bc87acd060bae86'
+				url = '/api/policy/radar1_city'
 			}
 			else{
-				url = '/api/v1/data/policy/fd768b07bcbc10bba820bd49f50a5390'
+				url = '/api/policy/radar3_city'
 			}
 			$.ajax({
 				type: 'GET',
@@ -971,7 +971,7 @@ new Vue({
 				xhrFields: {
 					withCredentials: true
 				},
-				url: 'http://210.14.118.96'+url,
+				url: ''+url,
 				crossDomain: true,
 				async: true,
 				dataType: 'json',
@@ -1051,7 +1051,7 @@ new Vue({
 				func(this.typeSelectData1, arr5)
 				func(this.typeSelectData2, arr5)
 				func(this.typeSelectData3, arr5)
-				let url = "http://210.14.118.96/api/v1/data/policy/ac8d658f03e7c1108198cae4b43b930a?token=01311272-ae3c-4b64-b615-42cb850b9385"
+				let url = "/api/policy/contrastPolicy?token=01311272-ae3c-4b64-b615-42cb850b9385"
 				$.ajax({
 					type: 'GET',
 					data: {
@@ -1113,7 +1113,7 @@ new Vue({
 						func(this.typeSelectData1, arr5)
 						func(this.typeSelectData2, arr5)
 						func(this.typeSelectData3, arr5)
-						let url = "http://210.14.118.96/api/v1/data/policy/ac8d658f03e7c1108198cae4b43b930a?token=01311272-ae3c-4b64-b615-42cb850b9385"
+						let url = "/api/policy/contrastPolicy?token=01311272-ae3c-4b64-b615-42cb850b9385"
 						$.ajax({
 							type: 'GET',
 							data: {
